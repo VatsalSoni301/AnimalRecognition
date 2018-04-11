@@ -1,0 +1,132 @@
+{% extends 'home_base.html' %} {% block body %}
+<div class="w3layouts-banner-slider">
+	<div class="container">
+		<div class="slider">
+			<div class="callbacks_container">
+				<ul class="rslides callbacks callbacks1" id="slider4">
+					<li>
+						<div class="agileits-banner-info">
+							<h3>Upload Image Of Animal
+							</h3>
+						</div>
+					</li>
+					<li>
+						<div class="agileits-banner-info">
+							<h3>See Your </br>History
+							</h3>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<script src="static/js/responsiveslides.min.js"></script>
+			<script>
+				// You can also use "$(window).load(function() {"
+				$(function () {
+					// Slideshow 4
+					$("#slider4").responsiveSlides({
+						auto: true,
+						pager: true,
+						nav: true,
+						speed: 500,
+						namespace: "callbacks",
+						before: function () {
+							$('.events').append("<li>before event fired.</li>");
+						},
+						after: function () {
+							$('.events').append("<li>after event fired.</li>");
+						}
+					});
+
+				});
+			</script>
+			<!--banner Slider starts Here-->
+		</div>
+	</div>
+</div>
+</div>
+<!-- //banner -->
+<!-- banner-bottom -->
+<div class="welcome">
+	<div class="container">
+		<div class="w3ls-heading">
+			<h2>Welcome To Our Animal club</h2>
+		</div>
+		<div class="welcome-grids">
+			<div class="col-md-6 agile-welcome-grid">
+				<div class="grid">
+					<div class="col-md-6 agileits-left">
+						<figure class="effect-chico">
+							<img src="static/images/d1.jpg" alt="" />
+							<figcaption>
+								<h4>DOG</h4>
+							</figcaption>
+						</figure>
+					</div>
+					<div class="col-md-6 agileits-left">
+						<figure class="effect-chico">
+							<img src="static/images/3.jpg" alt=" " />
+							<figcaption>
+								<h4>CAT</h4>
+							</figcaption>
+						</figure>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="col-md-6 agileinfo-welcome-right">
+				<h4>We can identify animal by using its image</h4>
+				<p>Whenever you want the information about animal by using its image, here you can do that.
+					<span>You just need to upload image and we will give you information about that animal. You can also do login and save details about animals which you have explored. We will save details for you but you nedd to do login/signup fot that. Also in gallery page, you can find details about some animals.If you want to know about animals then go to gallery and you will find it. If you have any query than you can contact us any time. </span>
+				</p>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<!-- banner-bottom -->
+<!-- services -->
+<div class="services">
+	<div class="container">
+		<div class="w3ls-heading">
+			<h3>Services</h3>
+		</div>
+		<div class="wthree-services-grids">
+			<div class="col-md-6 w3ls-about-left">
+				<div class="agileits-icon-grid">
+					<div class="icon-left hvr-radial-out">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</div>
+					<div class="icon-right">
+						<h5>Explore animal details by image of animal</h5>
+						<p>If you have image of animal and you want to know which animal it is and charecteristic of that animal then only thing you need to do is to go to the find animal page and just upload the image of animal that you have and we will find name and details of animal for you.</p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="agileits-icon-grid">
+					<div class="icon-left hvr-radial-out">
+						<i class="fa fa-heart" aria-hidden="true"></i>
+					</div>
+					<div class="icon-right">
+						<h5>Saved animals charecteristic</h5>
+						<p>For this functionality, you need to login to our web-site.In history page we will save all the details of all animals that you have explored so far from the image so that anytime you can see it.</p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="agileits-icon-grid">
+					<div class="icon-left hvr-radial-out">
+						<i class="fa fa-paper-plane" aria-hidden="true"></i>
+					</div>
+					<div class="icon-right">
+						<h5>3. Contact Us</h5>
+						<p> You can contact us anytime if you have any query. You just need to fill form where you need to specify your problem/message and send it to us and we will figure it out. </p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<!-- //services -->
+{% endblock %}

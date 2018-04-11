@@ -1,0 +1,44 @@
+{% extends 'home_base.html' %} {% block body %}
+<div class="about-heading">
+	<div class="container">
+		<h2>History</h2>
+	</div>
+</div>
+</div>
+
+{% if user_login=="false" %}
+</br>
+</br>
+<h3 class="hdg" style="text-align:center">Login is required to see History</h3>
+{% endif %} {% if user_login=="true" %}
+<div class="news">
+	<div class="container">
+		{% for item in data %}
+		<div class="w3-agileits-news-grids">
+			<div class="col-md-6 news-left">
+				<div class="w3-agile-news-date">
+					<div class="agile-news-icon">
+						<i class="fa fa-calendar" aria-hidden="true"></i>
+						<p>{{item['date']}}</p>
+					</div>
+				</div>
+				<div class="w3-agile-news-img">
+					<a href="">
+						<img src="static/Animal_Image/{{item['image']}}" width="640px" height="326px" alt="" />
+					</a>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="col-md-6 news-right">
+				<div class="news-right-grid">
+					<a href="">{{item['animal_name']}}</a>
+					<h5> Result: {{item['result']}}</h5>
+					<p>{{item["animal_information"]}}.</p>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endif %} {% endblock %}

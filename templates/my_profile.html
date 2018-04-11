@@ -1,0 +1,150 @@
+{% extends 'home_base.html' %} {% block head %}
+<style>
+	#something {
+		position: absolute;
+
+		z-index: 15;
+		top: 50%;
+		left: 50%;
+		margin: -100px 0 0 -270px;
+	}
+
+	.pass {
+		width: 100%;
+		color: #919191;
+		background: none;
+		outline: none;
+		font-size: .9em;
+		padding: .5em;
+		margin-bottom: 1em;
+		border: solid 1px #919191;
+		-webkit-appearance: none;
+	}
+</style>
+
+<script>
+	function myFunction() {
+		var x = document.getElementById("password");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
+		}
+	}  
+function validate()
+{
+
+var name=document.getElementById("username1").value
+var email=document.getElementById("email1").value
+var pass=document.getElementById("password1").value
+var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+if (name=='')
+{
+
+document.getElementById("msg").innerHTML="Please Enter UserName"
+		$('#myModal11').modal('show');
+}
+else if(email=='')
+{
+document.getElementById("msg").innerHTML="Please Enter Email"
+		$('#myModal11').modal('show');
+}
+else if(reg.test(email) == false)
+	{
+		document.getElementById("msg").innerHTML="Please Enter Valid EmailID"
+		$('#myModal11').modal('show');
+	}
+else if(pass=='')
+{
+document.getElementById("msg").innerHTML="Please Enter Password"
+		$('#myModal11').modal('show');
+}
+else if(pass.length<6)
+{
+document.getElementById("msg").innerHTML="Minimum password length must be 6!"
+		$('#myModal11').modal('show');
+}
+else
+{
+$('#successModal').modal('show');
+}
+}
+$(function () {
+            $('#successModal').on('show.bs.modal', function () {
+                var myModal = $(this);
+                clearTimeout(myModal.data('hideInterval'));
+                myModal.data('hideInterval', setTimeout(function () {
+                    myModal.modal('hide');
+                    document.form_mypro.submit();
+                }, 1500));
+            });
+        });
+</script> {% endblock %} {% block body %}
+<div class="about-heading">
+	<div class="container">
+		<h2>My Profile</h2>
+	</div>
+</div>
+</div>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<!-- //banner -->
+<!-- contact -->
+<div class="contact-top">
+	<!-- container -->
+	<div class="container">
+		<div class="mail-grids">
+			<div class=" col-md-6 contact-form" id="something">
+				</br>
+				</br>
+				</br>
+				</br>
+				</br>
+				<form action="{{ url_for('update_profile') }}" method="POST" name="form_mypro" style="text-align:left" >
+					UserName
+					<input type="text" name="username" id="username1" required="" value="{{user_detail[1]}}"> Email ID
+					<input type="text" name="email" id="email1" required="" value="{{user_detail[2]}}"> Password
+					<input type="password" class="pass" id="password1" name="password" id="password" required="" value="{{user_detail[3]}}">
+					<input type="checkbox" onclick="myFunction()"> &nbsp Show Password
+					</br>
+					<input type="button" class="btn btn-primary" value="Update" onclick="validate()">
+				</form>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!-- //container -->
+</div>
+</br>
+<!-- //contact -->
+<div class="modal fade" id="myModal11" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <p id="msg"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<div id="successModal" class="modal fade">
+        <div class="modal-dialog" style="width:30%">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Data has been Successfully Updated
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

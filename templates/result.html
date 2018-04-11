@@ -1,0 +1,37 @@
+{% extends 'home_base.html' %} {% block body %}
+<div class="about-heading">
+	<div class="container">
+		<h2>Result</h2>
+	</div>
+</div>
+</div>
+<!-- //banner -->
+<div class="news">
+	<div class="container">
+		<div class="w3-agileits-news-grids">
+			<div class="col-md-6 news-left">
+				<div class="w3-agile-news-date">
+					<div class="agile-news-icon">
+						<i class="fa fa-calendar" aria-hidden="true"></i>
+						<p>{{current_date}}</p>
+					</div>
+				</div>
+				<div class="w3-agile-news-img">
+					<a href="">
+						<img src="static/Animal_Image/{{image}}" alt="" />
+					</a>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="col-md-6 news-right">
+				<div class="news-right-grid">
+					<a href="">{{animal_name}}</a>
+					<h5> Result:{{result}}</h5>
+					<p>{{animal_information}}</p>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'home_base.html' %}
+{% block head %}
+<head>
+<script>
+function validate()
+{
+
+var name=document.getElementById("name1").value
+var email=document.getElementById("email1").value
+var subject=document.getElementById("subject1").value
+var message=document.getElementById("message1").value
+var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+if (name=='')
+{
+
+document.getElementById("msg").innerHTML="Please Enter Name"
+		$('#myModal11').modal('show');
+}
+else if(email=='')
+{
+document.getElementById("msg").innerHTML="Please Enter Email"
+		$('#myModal11').modal('show');
+}
+else if(reg.test(email) == false)
+	{
+		document.getElementById("msg").innerHTML="Please Enter Valid EmailID"
+		$('#myModal11').modal('show');
+	}
+else if(subject=='')
+{
+document.getElementById("msg").innerHTML="Please Enter Subject"
+		$('#myModal11').modal('show');
+}
+else if(message=='')
+{
+document.getElementById("msg").innerHTML="Please Write Message"
+		$('#myModal11').modal('show');
+}
+else
+{
+$('#successModal').modal('show');
+}
+}
+$(function () {
+            $('#successModal').on('show.bs.modal', function () {
+                var myModal = $(this);
+                clearTimeout(myModal.data('hideInterval'));
+                myModal.data('hideInterval', setTimeout(function () {
+                    myModal.modal('hide');
+                    document.form_con.submit();
+                }, 1500));
+            });
+        });
+</script>
+</head>
+{% endblock %}
+{% block body %}
+
+<div class="about-heading">
+	<div class="container">
+		<h2>Contact Us</h2>
+	</div>
+</div>
+</div>
+<!-- //banner -->
+<!-- contact -->
+<div class="contact-top">
+	<!-- container -->
+	<div class="container">
+		<div class="mail-grids">
+			<div class="col-md-6 mail-grid-left">
+				<h3>Get In Touch</h3>
+				<p>
+					<h4> Telephone: </h4>+91 9099499731 </br>
+					<h4>E-mail: </h4>
+					<a href="">animal.club@gmail.com</a>
+				</p>
+			</div>
+			<div class="col-md-6 contact-form">
+				<form action="{{ url_for('contact_1') }}" method="POST" name="form_con">
+					<input type="text" name="Name" placeholder="Name" required="" id="name1">
+					<input type="email" name="Email" placeholder="Email" required="" id="email1">
+					<input type="text" name="Subject" placeholder="Subject" required="" id="subject1">
+					<textarea name="Message" placeholder="Message" required="" id="message1"></textarea>
+					<input type="button" value="SEND" class="btn-primary btn" onClick = "validate();">
+					
+				</form>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!-- //container -->
+</div>
+<!-- //contact -->
+<div class="modal fade" id="myModal11" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <p id="msg"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<div id="successModal" class="modal fade">
+        <div class="modal-dialog" style="width:30%">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Data has been Successfully Added
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

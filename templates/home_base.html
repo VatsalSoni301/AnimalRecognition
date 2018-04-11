@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Animal Club </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="keywords" content="Animal Club " />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- bootstrap-css -->
+	<link href="static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<!--// bootstrap-css -->
+	<!-- css -->
+	<link rel="stylesheet" href="static/css/style.css" type="text/css" media="all" />
+	<!--// css -->
+	<!-- font-awesome icons -->
+	<link href="static/css/font-awesome.css" rel="stylesheet">
+	<!-- //font-awesome icons -->
+	<!-- font -->
+	<link href='//fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+	 rel="stylesheet">
+	<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet'
+	 type='text/css'>
+	<!-- //font -->
+	<script src="static/js/jquery-1.11.1.min.js"></script>
+	<script src="static/js/bootstrap.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+				$('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+			});
+		});
+	</script>
+	<script>
+		function hide_login() {
+			$('#myModal').modal('hide');
+		}
+
+		function get_url() {
+			document.getElementById("url").value = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+			
+var email=document.getElementById("email").value
+var pass=document.getElementById("password").value
+var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+if(email=='')
+{
+document.getElementById("msg").innerHTML="Please Enter Email"
+		$('#myModal11').modal('show');
+}
+else if(reg.test(email) == false)
+	{
+		document.getElementById("msg").innerHTML="Please Enter Valid EmailID"
+		$('#myModal11').modal('show');
+	}
+else if(pass=='')
+{
+document.getElementById("msg").innerHTML="Please Enter Password"
+		$('#myModal11').modal('show');
+}
+else
+{
+$.post("/signin_xyz",
+        {
+          email:email,
+		  password:pass,
+		  
+        },
+		function(data,status){
+			if(data=="wrong")
+			{
+				document.getElementById("msg").innerHTML="Unauthorized user"
+				$('#myModal11').modal('show');
+			}
+			else{
+				document.getElementById("ss_msg").innerHTML="Success"
+				document.getElementById("hide").value="form_login"
+				$('#successModal').modal('show');
+			}
+			
+        }
+        );
+}
+}
+		
+$(function () {
+            $('#successModal').on('show.bs.modal', function () {
+                var myModal = $(this);
+                clearTimeout(myModal.data('hideInterval'));
+                myModal.data('hideInterval', setTimeout(function () {
+                    myModal.modal('hide');
+			if(document.getElementById("hide").value=='form_reg')
+{
+document.form_reg.submit();
+}
+else
+{
+
+document.form_login.submit();
+}
+                 
+                }, 1500));
+            });
+        });
+function valsignup()
+{
+var uname=document.getElementById("username_reg").value
+var email=document.getElementById("email_reg").value
+var pass=document.getElementById("password_reg").value
+var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+if(uname=='')
+{
+document.getElementById("msg").innerHTML="Please Enter UserName"
+		$('#myModal11').modal('show');
+}
+else if(uname.length>10)
+{
+document.getElementById("msg").innerHTML="UserName must be of less than 10 digits"
+		$('#myModal11').modal('show');
+}
+else if(email=='')
+{
+document.getElementById("msg").innerHTML="Please Enter Email"
+		$('#myModal11').modal('show');
+}
+else if(reg.test(email) == false)
+	{
+		document.getElementById("msg").innerHTML="Please Enter Valid EmailID"
+		$('#myModal11').modal('show');
+	}
+else if(pass=='')
+{
+document.getElementById("msg").innerHTML="Please Enter Password"
+		$('#myModal11').modal('show');
+}
+else if(pass.length<6)
+{
+document.getElementById("msg").innerHTML="Password must be of atleast 6 digits"
+		$('#myModal11').modal('show');
+}
+else
+{
+document.getElementById("hide").value="form_reg"
+document.getElementById("ss_msg").innerHTML="Data Successfully Added"
+$('#successModal').modal('show');
+}
+}
+		function signout_url() {
+			
+			var url = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+			$.post("/signout",
+				{
+					url: url
+				},
+				function (data, status) {
+					if(data=="my_profile" || data=="result" || data=="history"){
+					$("body").load('/');
+					}
+					else{
+					$("body").load('/' + data);}
+				}
+			);
+			alert("Signed Out successfully")
+			
+		}
+	</script> {% block head %} {% endblock %}
+	<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<![endif]-->
+</head>
+
+<body>
+	<!-- banner -->
+	<div class="banner about-banner">
+		<div class="header about-header">
+			<div class="container">
+				<div class="header-left">
+					<div class="w3layouts-logo">
+						<h1>
+							<a href="/">Animal
+								<span>Club</span>
+							</a>
+						</h1>
+					</div>
+				</div>
+				<div class="header-right">
+					<div class="top-nav">
+						<nav class="navbar navbar-default">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+							</div>
+							<!-- Collect the nav links, forms, and other content for toggling -->
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+								<ul class="nav navbar-nav">
+									<li>
+										<a href="/">Home</a>
+									</li>
+									<li>
+										<a href="/information">Find Animal</a>
+									</li>
+									<li>
+										<a href="/history">History</a>
+									</li>
+									<li>
+										<a href="/gallery">Gallery</a>
+									</li>
+									<li>
+										<a href="/about">About</a>
+									</li>
+									<li>
+										<a href="/contact">Contact</a>
+									</li>
+
+									{% if user_login=="false" %}
+									<li>
+										<a href="#myModal" data-toggle="modal" class="play-icon">Login</a>
+									</li>
+									{% endif %} {% if user_login=="true" %}
+
+									<li class="">
+										<a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user_name}}
+											<span class="caret"></span>
+										</a>
+										<ul class="dropdown-menu">
+											<li>
+												<a class="hvr-bounce-to-bottom" href="/my_profile">My Profile</a>
+											</li>
+										<!-- 	<li>
+												<a class="hvr-bounce-to-bottom" href="typography.html">Change Password</a>
+											</li> -->
+											<li>
+												<a class="hvr-bounce-to-bottom" onclick="signout_url()">Sign Out</a>
+											</li>
+
+										</ul>
+									</li>
+									{% endif %}
+								</ul>
+								<div class="clearfix"> </div>
+							</div>
+						</nav>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+
+		{% block body %} {% endblock %}
+
+		<!-- footer -->
+		<footer>
+			<div class="container">
+				<div class="agileits-w3layouts-footer-grids">
+					<div class="col-md-4 footer-left">
+						<h3>
+							<a href="/">Animal
+								<span>Club</span>
+							</a>
+						</h3>
+					</div>
+					<div class="col-md-4 footer-left">
+						<h4>Navigation</h4>
+						<div class="col-md-6 footer-grid-left">
+							<ul>
+								<li>
+									<a class="active" href="/">Home</a>
+								</li>
+								<li>
+									<a href="/gallery">Gallery</a>
+								</li>
+								<li>
+									<a href="/history">History</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-6 footer-grid-left">
+							<ul>
+								<li>
+									<a href="/about">About</a>
+								</li>
+								<li>
+									<a href="/contact">Contact</a>
+								</li>
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="col-md-4 footer-left">
+						<h4>Social Media</h4>
+						<div class="footer-social-grids">
+							<ul>
+								<li>
+									<a href="">
+										<i class="fa fa-facebook"></i>
+									</a>
+								</li>
+								<li>
+									<a href="">
+										<i class="fa fa-twitter"></i>
+									</a>
+								</li>
+								<li>
+									<a href="">
+										<i class="fa fa-rss"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+		</footer>
+		<!-- footer -->
+		<!-- copyright -->
+		<div class="copyright">
+			<div class="container">
+				<p>© 2018 Animal Club. All rights reserved | Design by
+					<a href="">Super 3</a>
+				</p>
+			</div>
+		</div>
+		<!-- //copyright -->
+
+
+		<!-- Login Model -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+			<!-- Modal1 -->
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h2>&nbsp&nbsp Login</h2>
+						<div class="container">
+							<form action="{{ url_for('signin') }}" method="POST" enctype="multipart/form-data" name="form_login">
+								<input id="url" type="hidden" name="url">
+
+								<div class="input-group" style="width:45%">
+									<span class="input-group-addon">
+										<i class="glyphicon glyphicon-user"></i>
+									</span>
+									<input id="email" type="text" class="form-control" name="email" placeholder="Email">
+								</div>
+								<div class="input-group" style="width:45%">
+									<span class="input-group-addon">
+										<i class="glyphicon glyphicon-lock"></i>
+									</span>
+									<input id="password" type="password" class="form-control" name="password" placeholder="Password">
+								</div>
+								<input type="button" class="btn btn-primary" value="Login" onclick="get_url()">
+								</br>
+								</br>
+								<div class="input-group">
+									<p>Do not have an account?</p>
+									<a href="#myModal1" data-toggle="modal" class="play-icon" onclick="hide_login()">Signup</a>
+								</div>
+								
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Close Login Model -->
+
+		<!-- SignUp Model -->
+		<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+			<!-- Modal1 -->
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h2> &nbsp&nbsp Sign Up</h2>
+						<div class="container">
+							<form action="{{ url_for('signup') }}" method="POST" enctype="multipart/form-data" name="form_reg">
+								<div class="input-group" style="width:45%">
+									<span class="input-group-addon" id="basic-addon1">@</span>
+									<input id="username_reg" type="text" class="form-control" name="username" placeholder="Username">
+								</div>
+								<div class="input-group" style="width:45%">
+									<span class="input-group-addon">
+										<i class="glyphicon glyphicon-user"></i>
+									</span>
+									<input id="email_reg" type="text" class="form-control" name="email" placeholder="Email">
+								</div>
+								<div class="input-group" style="width:45%">
+									<span class="input-group-addon">
+										<i class="glyphicon glyphicon-lock"></i>
+									</span>
+									<input id="password_reg" type="password" class="form-control" name="password" placeholder="Password">
+								</div>
+								<input type="button" class="btn btn-primary" value="SignUp" onclick="valsignup()">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="static/js/responsiveslides.min.js"></script>
+		<script src="static/js/SmoothScroll.min.js"></script>
+		<script type="text/javascript" src="static/js/move-top.js"></script>
+		<script type="text/javascript" src="static/js/easing.js"></script>
+		<!-- here stars scrolling icon -->
+		<script type="text/javascript">
+			$(document).ready(function () {
+				/*
+					var defaults = {
+					containerID: 'toTop', // fading element id
+					containerHoverID: 'toTopHover', // fading element hover id
+					scrollSpeed: 1200,
+					easingType: 'linear' 
+					};
+				*/
+				$().UItoTop({ easingType: 'easeOutQuart' });
+			});
+		</script>
+		<!-- //here ends scrolling icon -->
+<div class="modal fade" id="myModal11" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <p id="msg"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<div id="successModal" class="modal fade">
+        <div class="modal-dialog" style="width:30%">
+            <div class="modal-content">
+	<input type="hidden" id="hide">
+                <div class="modal-body">
+                     <p id="ss_msg"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+{% extends 'home_base.html' %} {% block head %}
+<script>
+function loading()
+{
+$('#loadingmessage').show();
+document.getElementById("page_blur").style.opacity="0.2";
+document.form.submit();
+
+}
+</script>
+<style>
+	.uploader {
+		margin-left: 10px;
+		position: relative;
+		overflow: hidden;
+		width: 570px;
+		height: 350px;
+		background: #f3f3f3;
+		border: 2px dashed #e8e8e8;
+	}
+
+	#filePhoto {
+		position: absolute;
+		width: 570px;
+		height: 400px;
+		top: -50px;
+		left: 0;
+		z-index: 2;
+		opacity: 0;
+		cursor: pointer;
+	}
+
+	.uploader img {
+		position: absolute;
+		width: 572px;
+		height: 352px;
+		top: -1px;
+		left: -1px;
+		z-index: 1;
+		border: none;
+	}
+	.overlay {
+  
+    display: none;        
+    position: absolute;   
+    top: 70%;                  
+    right: 0;                
+    bottom: 0;
+    left: 37%;
+    opacity: 1;
+}
+</style>
+{% endblock %} {% block body %}
+
+<div class="about-heading">
+	<div class="container">
+		<h2>Find Animal</h2>
+	</div>
+</div>
+</div>
+<!-- //banner -->
+<div class="typography" id="page_blur">
+	<div class="container">
+		<!--start -->
+		<form action="{{ url_for('result') }}" method="POST" enctype="multipart/form-data" name="form">
+			<fieldset>
+				<div class="container">
+					<div class="row">
+						<div>
+							<h3 class="hdg" style="text-align:center">Upload Image</h3>
+							<div class="input-group" style="margin-left:27%">
+								<label class="input-group-btn" class="col-6">
+									<span class="btn btn-primary">
+										Browse&hellip;
+										<input type="file" id="filePhoto" name="filePhoto" style="display: none;">
+									</span>
+								</label>
+								<input style="width:60%" id="image_name" type="text" class="form-control" readonly>
+							</div>
+							<span class="help-block col-12" style="text-align:center">
+								OR
+							</span>
+						</div>
+					</div>
+				</div>
+				<!--end -->
+				<!--start -->
+				<div class="uploader" onclick="$( '#filePhoto').click()" style="margin-left:27%">
+					<p style="text-align:center; padding-top:30%">Drag And Drop</p>
+					<img src=" " />
+					<input type="file" name="filePhoto" id="filePhoto" />
+				</div>
+				<div id='loadingmessage' style='display:none' class='overlay'>
+  					<img src='/static/images/loadinggraphic.gif'/>
+				</div>
+				<script>
+					var imageLoader = document.getElementById('filePhoto');
+					var name = document.getElementById('filePhoto').value;
+					imageLoader.addEventListener('change', handleImage, false);
+					function handleImage(e) {
+						var reader = new FileReader();
+						reader.onload = function (event) {
+							document.getElementById("image_name").value = imageLoader.files.item(0).name;
+							$('.uploader img').attr('src', event.target.result);
+						}
+						reader.readAsDataURL(e.target.files[0]);
+					}
+				</script>
+				<!--end -->
+				</br>
+				<div>
+					<input style="margin-left:49%" type="button" onclick="loading()" class="btn btn-primary" value="SEND">
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+{% endblock %}
